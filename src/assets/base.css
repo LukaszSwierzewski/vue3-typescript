@@ -34,6 +34,7 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+  --spacing-large: 1rem;
   --spacing-medium:  0.5rem;
   --spacing-small:  0.2rem;
 }
@@ -93,7 +94,19 @@ body {
   padding: var(--spacing-small);
   width: 100%;
 }
+.mb-medium {
+  margin-top: var(--spacing-medium);
+}
+.mb-medium {
+  margin-bottom: var(--spacing-medium);
+}
 
+.mt-large {
+  margin-top: var(--spacing-large);
+}
+.mb-medium {
+  margin-bottom: var(--spacing-medium);
+}
 main {
   width: 100%;
 }

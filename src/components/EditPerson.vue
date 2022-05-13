@@ -29,6 +29,9 @@ export default defineComponent({
 </script>
 
 <template>
+  <div class="mt-large mb-large">
+    <h1>Editing {{ person.name }}</h1>
+  </div>
   <form id="'edit-person">
     <div class="inputs">
       <div v-for="(_, key) in editData" :key="key" class="single-input">
