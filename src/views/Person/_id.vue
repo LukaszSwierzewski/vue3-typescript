@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import PeopleList from '@/components/PeopleList.vue'
+import EditPerson from '../../components/EditPerson.vue'
+import { useRoute } from 'vue-router';
+
+const route = useRoute();  
+const id = route.params.id
 </script>
 
 <template>
   <main>
     <Suspense>
    <template #default>
-     <PeopleList />
+     <EditPerson :id="id" />
    </template>
    <template #fallback>
      <span>Loading...</span>

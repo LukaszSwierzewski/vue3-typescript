@@ -1,22 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from "@/components/HelloWorld.vue";
-import { ref } from 'vue'
-
-const count = ref(1)
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-    {{ count }}
-    <div class="wrapper">
-      <HelloWorld msg="You dSSSid it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>s
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+    <div class="sticky-header">
+      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+      <div class="wrapper">
+        <nav>
+          <RouterLink to="/">Star Wars people</RouterLink>
+          <RouterLink to="/about">About project</RouterLink>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -25,7 +20,13 @@ const count = ref(1)
 
 <style>
 @import '@/assets/base.css';
-
+.sticky-header {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+}
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -36,7 +37,7 @@ const count = ref(1)
 
 header {
   line-height: 1.5;
-  max-height: 100vh;
+  max-height: 100%;
 }
 
 .logo {
@@ -92,11 +93,11 @@ nav a:first-of-type {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
+    margin-top: var(--spacing-medium);
   }
 
   header {
     display: flex;
-    place-items: center;
     padding-right: calc(var(--section-gap) / 2);
   }
 

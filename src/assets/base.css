@@ -34,6 +34,8 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+  --spacing-medium:  0.5rem;
+  --spacing-small:  0.2rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -71,4 +73,23 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.btn {
+  color: var(--vt-c-black);
+  padding: var(--spacing-medium);
+  margin-top: var(--spacing-medium);
+  margin-bottom: var(--spacing-medium);
+  background: var(--vt-c-white);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn:hover {
+  background: var(--vt-c-black);
+  color: var(--vt-c-white)
+}
+.base-input {
+  padding: var(--spacing-small);
+  width: 100%;
 }
