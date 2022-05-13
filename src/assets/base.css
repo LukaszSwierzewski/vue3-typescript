@@ -93,3 +93,27 @@ body {
   padding: var(--spacing-small);
   width: 100%;
 }
+
+main {
+  width: 100%;
+}
+table {
+  border-spacing: 0rem;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: var(--spacing-medium);
+  background-color: transparent;
+  text-align: left;
+}
+
+th {
+  font-weight: bold;
+  border: 1px solid #cccccc;
+  padding: var(--spacing-medium);
+}
+
+td {
+  border: 1px solid #cccccc;
+  padding: var(--spacing-medium);
+}

@@ -1,27 +1,28 @@
-import { defineStore } from 'pinia'
-import { fetchPersons } from '@/api/swapi'
-import type { People } from '@/types/People.type'
-import { excludeByFirstLetter } from '@/helpers/util'
+import { defineStore } from "pinia";
+import { fetchPersons } from "@/api/swapi";
+import type { People } from "@/types/People.type";
+import { excludeByFirstLetter } from "@/helpers/util";
 
 interface usePersonState {
-  persons: People[]
+  persons: People[];
 }
 export const usePersonStore = defineStore({
-  id: 'person',
+  id: "person",
   state: (): usePersonState => ({
-    persons: []
+    persons: [],
   }),
   getters: {
-    filteredPersons: (state) => excludeByFirstLetter(state.persons, ["L", "N", "C"], "name")
+    filteredPersons: (state) =>
+      excludeByFirstLetter(state.persons, ["L", "N", "C"], "name"),
   },
   actions: {
-      /**
+    /**
      * @name fetchPersons
      * @description fetch persons from swapi API
      */
     async fetchPersons() {
-      const persons: People[] = await fetchPersons()
-      this.persons = persons
-    }
-  }
-})
+      const persons: People[] = await fetchPersons();
+      this.persons = persons;
+    },
+  },
+});

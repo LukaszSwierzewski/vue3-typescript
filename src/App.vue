@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
   <header>
     <div class="sticky-header">
-      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+      <img
+        alt="Vue logo"
+        class="logo"
+        src="@/assets/logo.svg"
+        width="125"
+        height="125"
+      />
       <div class="wrapper">
         <nav>
           <RouterLink to="/">Star Wars people</RouterLink>
@@ -19,19 +25,19 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style>
-@import '@/assets/base.css';
+@import "@/assets/base.css";
 .sticky-header {
-    position: sticky;
-    top: 0;
-    max-height: 100vh;
-    display: flex;
-    align-items: center;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-
+  width: 100%;
   font-weight: normal;
 }
 

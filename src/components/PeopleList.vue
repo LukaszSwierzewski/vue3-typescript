@@ -1,81 +1,71 @@
 <script lang="ts">
-import { usePersonStore } from '@/stores/person';
-import { ref, defineComponent, computed, onMounted } from 'vue'
-import SinglePerson from './SinglePerson.vue'
-import { countMatches } from '@/helpers/util'
-const showDiscarded = ref(false)
+import { usePersonStore } from "@/stores/person";
+import { ref, defineComponent, computed, onMounted } from "vue";
+import SinglePerson from "./SinglePerson.vue";
+import { countMatches } from "@/helpers/util";
+const showDiscarded = ref(false);
 export default defineComponent({
-    async setup() {
-        const personState = usePersonStore();
-        if (personState.$state.persons.length === 0) {
-          await personState.fetchPersons();
-        }
-        
-        const people = ref(personState.filteredPersons);
-        const countFemale = computed(() => countMatches(people.value, 'female', 'gender'))
-        const countMale = computed(() => countMatches(people.value, 'male', 'gender'))
+  async setup() {
+    const personState = usePersonStore();
+    if (personState.$state.persons.length === 0) {
+      await personState.fetchPersons();
+    }
 
-        const changeFilter = (isOnMounted: boolean): void => {
-          if (!isOnMounted) {
-          showDiscarded.value = !showDiscarded.value
-          }
-          showDiscarded.value ? people.value = personState.persons  : people.value = personState.filteredPersons
-        }
-        onMounted(() => {
-          changeFilter(true)
-        })
+    const people = ref(personState.filteredPersons);
+    const countFemale = computed(() =>
+      countMatches(people.value, "female", "gender")
+    );
+    const countMale = computed(() =>
+      countMatches(people.value, "male", "gender")
+    );
 
-        return { people, countFemale, countMale, showDiscarded , changeFilter };
-    },
-    components: { SinglePerson }
+    const changeFilter = (isOnMounted: boolean): void => {
+      if (!isOnMounted) {
+        showDiscarded.value = !showDiscarded.value;
+      }
+      showDiscarded.value
+        ? (people.value = personState.persons)
+        : (people.value = personState.filteredPersons);
+    };
+    // eslint-disable-next-line vue/no-lifecycle-after-await
+    onMounted(() => {
+      changeFilter(true);
+    });
+
+    return { people, countFemale, countMale, showDiscarded, changeFilter };
+  },
+  components: { SinglePerson },
 });
-
-
-
 </script>
 
 <template>
   <div>
+    <div class="action-btn">
+      <button class="btn" @click="changeFilter(false)">
+        {{ showDiscarded ? "Hide" : "Show" }} discarded
+      </button>
+    </div>
     <div class="count-gender">
       <p>Female: {{ countFemale }}</p>
-      <p>Male: {{ countMale }}</p>
+      <p class="text-right">Male: {{ countMale }}</p>
     </div>
-    <div class="action-btn">
-      <button class="btn" @click="changeFilter(false)">{{ showDiscarded ? 'Hide' : 'Show' }} discarded</button>
-    </div>
+
     <table>
-        <tr>
-            <th>Name</th>
-            <th>Eye color</th>
-            <th>Year of birth</th>
-            <th>Edit</th>
-        </tr>
-        <tr v-for="person in people" :key="person.url">
-            <SinglePerson :person="person" />
-        </tr>
+      <tr>
+        <th>Name</th>
+        <th>Eye color</th>
+        <th>Year of birth</th>
+        <th>Edit</th>
+      </tr>
+      <tr v-for="person in people" :key="person.url">
+        <SinglePerson :person="person" />
+      </tr>
     </table>
   </div>
 </template>
-<style>
-table {
-  border-spacing: 0rem;
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: var(--spacing-medium);
-  background-color: transparent;
-  text-align: left;
-}
-
-th {
-  font-weight: bold;
-  border: 1px solid #cccccc;
-  padding: var(--spacing-medium);
-}
-
-td {
-  border: 1px solid #cccccc;
-  padding: var(--spacing-medium);
+<style scoped>
+.action-btn {
+  max-width: 10rem;
 }
 .count-gender {
   display: flex;
