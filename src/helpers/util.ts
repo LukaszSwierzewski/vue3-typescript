@@ -1,4 +1,4 @@
-type ValueOf<T> = T[keyof T]
+type ValueOf<T> = T[keyof T];
 
 export function excludeByFirstLetter<T extends object>(
   arr: T[],
