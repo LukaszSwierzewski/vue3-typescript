@@ -15,6 +15,7 @@ const fetchData = async () => {
   return json
 }
 onBeforeMount(async () => {
+  console.log('xddddd')
   console.log(import.meta.env)
   const data = await fetchData()
   fetched.value = data
