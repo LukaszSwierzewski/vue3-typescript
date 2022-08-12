@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 import { fetchPersons } from "@/api/swapi";
 import type { People } from "@/types/People.type";
 import { excludeByFirstLetter } from "@/helpers/util";
-
 interface usePersonState {
   persons: People[];
 }
