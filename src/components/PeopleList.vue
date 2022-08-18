@@ -3,12 +3,14 @@ import { usePersonStore } from "@/stores/person";
 import { ref, defineComponent, computed, onMounted } from "vue";
 import SinglePerson from "./SinglePerson.vue";
 import { countMatches } from "@/helpers/util";
+import usePerson from '@/composable/usePerson'
 const showDiscarded = ref(false);
 export default defineComponent({
   async setup() {
     const personState = usePersonStore();
+    const { fetchPersons, users } = usePerson()
     if (personState.$state.persons.length === 0) {
-      await personState.fetchPersons();
+      await fetchPersons()
     }
 
     const people = ref(personState.filteredPersons);
@@ -32,7 +34,14 @@ export default defineComponent({
       changeFilter(true);
     });
 
-    return { people, countFemale, countMale, showDiscarded, changeFilter };
+    return {
+      people,
+      countFemale,
+      countMale,
+      showDiscarded,
+      changeFilter,
+      users,
+    };
   },
   components: { SinglePerson },
 });
@@ -41,6 +50,7 @@ export default defineComponent({
 <template>
   <div>
     <div class="action-btn">
+      {{ users }}
       <button class="btn" @click="changeFilter(false)">
         {{ showDiscarded ? "Hide" : "Show" }} discarded
       </button>
@@ -67,6 +77,7 @@ export default defineComponent({
 .action-btn {
   max-width: 10rem;
 }
+
 .count-gender {
   display: flex;
   align-items: center;

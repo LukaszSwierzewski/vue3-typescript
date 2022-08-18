@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import SomeInput from "@/components/TestInput.vue";
 import { ref, onBeforeMount } from 'vue'
-
+import usePerson from '@/composable/usePerson'
 const xd = ref('asdsxsd')
 const fetched = ref(null)
 const valueB = ref('aaaaa')
 const clickMe = () => {
   console.log('sometest')
 }
+const { users } = usePerson()
 const fetchData = async () => {
   const url = 'https://swapi.dev/api/people/1'
   const data = await fetch(url)
@@ -15,7 +16,6 @@ const fetchData = async () => {
   return json
 }
 onBeforeMount(async () => {
-  console.log('xddddd')
   console.log(import.meta.env)
   const data = await fetchData()
   fetched.value = data
@@ -27,6 +27,12 @@ onBeforeMount(async () => {
     <h1>About project:</h1>
     aaaa 
     {{ fetched }}
+    <br />
+    <br />
+    <br />
+    halooo
+    <br />
+    {{ users[0] }}
     <SomeInput v-model:valueA="xd" v-model:valueB="valueB" />
     <p>
       {{ xd }}

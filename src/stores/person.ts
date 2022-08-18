@@ -19,9 +19,10 @@ export const usePersonStore = defineStore({
      * @name fetchPersons
      * @description fetch persons from swapi API
      */
-    async fetchPersons() {
+    async fetchPersons(): Promise<People[]> {
       const persons: People[] = await fetchPersons();
       this.persons = persons;
+      return persons
     },
   },
 });
